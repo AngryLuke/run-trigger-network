@@ -20,15 +20,15 @@ data "aws_availability_zones" "available" {
 resource "aws_vpc" "example" {
   cidr_block = var.vpc_cidr_block
 
-  tags = merge(
-    var.mandatory_tags,
-    {
-      Project = var.project_tag
-    },
-  )
-  # tags = {
-  #   Project = var.project_tag
-  # }
+  # tags = merge(
+  #   var.mandatory_tags,
+  #   {
+  #     Project = var.project_tag
+  #   },
+  # )
+  tags = {
+    Project = var.project_tag
+  }
 }
 
 resource "aws_subnet" "public" {
