@@ -20,15 +20,15 @@ data "aws_availability_zones" "available" {
 resource "aws_vpc" "example" {
   cidr_block = var.vpc_cidr_block
 
-  # tags = merge(
-  #   var.mandatory_tags,
-  #   {
-  #     Project = var.project_tag
-  #   },
-  # )
-  tags = {
-    Project = var.project_tag
-  }
+  tags = merge(
+    var.mandatory_tags,
+    {
+      Project = var.project_tag
+    },
+  )
+  # tags = {
+  #   Project = var.project_tag
+  # }
 }
 
 resource "aws_subnet" "public" {
@@ -192,13 +192,13 @@ resource "aws_security_group" "public" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  ingress {
-    description = "ICMP ingress"
-    from_port   = -1
-    to_port     = -1
-    protocol    = "icmp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+  # ingress {
+  #   description = "ICMP ingress"
+  #   from_port   = -1
+  #   to_port     = -1
+  #   protocol    = "icmp"
+  #   cidr_blocks = ["0.0.0.0/0"]
+  # }
 
   egress {
     from_port   = 0
